@@ -45,19 +45,17 @@ function saveNotes() {
 /* ---------- rendering ---------- */
 
 function render() {
+  const normalizedSearchTerm = searchTerm.toLowerCase();
+
   // Apply the active category filter
   let visibleNotes = notes.filter((note) => {
     const matchesCategory =
       activeCategory === "all" || note.category === activeCategory;
 
-    // NOTE: this does a plain substring match, so searching is
-    // currently case-sensitive ("Groceries" won't match "groceries").
-    // See ISSUES.md — "Search should ignore letter case" is a
-    // good first issue for fixing this.
     const matchesSearch =
       searchTerm === "" ||
-      note.title.includes(searchTerm) ||
-      note.content.includes(searchTerm);
+      note.title.toLowerCase().includes(normalizedSearchTerm) ||
+      note.content.toLowerCase().includes(normalizedSearchTerm);
 
     return matchesCategory && matchesSearch;
   });
