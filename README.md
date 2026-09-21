@@ -5,11 +5,6 @@ Study, or To-do), search through your notes, and filter by category. Notes
 are saved in your browser's local storage, so they're still there when you
 come back.
 
-This project is built with plain HTML, CSS, and JavaScript — no frameworks,
-no build step, no dependencies. It exists as a teaching repository for the
-Open Source Track: a small enough codebase to read in one sitting, with a
-real backlog of issues to practice contributing to.
-
 ## Running it locally
 
 No installation needed.
