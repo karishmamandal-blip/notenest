@@ -44,7 +44,42 @@ function saveNotes() {
 
 /* ---------- rendering ---------- */
 
+const CATEGORY_LABELS = {
+  all: "All",
+  personal: "Personal",
+  work: "Work",
+  idea: "Idea",
+  study: "Study",
+  todo: "To-do",
+};
+
+function updateFilterCounts() {
+  const counts = {
+    all: notes.length,
+    personal: 0,
+    work: 0,
+    idea: 0,
+    study: 0,
+    todo: 0,
+  };
+
+  notes.forEach((note) => {
+    if (counts[note.category] !== undefined) {
+      counts[note.category]++;
+    }
+  });
+
+  filterTabs.querySelectorAll(".filter-btn").forEach((button) => {
+    const cat = button.dataset.category;
+    const label = CATEGORY_LABELS[cat] || button.textContent.split(" ")[0];
+    const count = counts[cat] ?? 0;
+    button.textContent = `${label} (${count})`;
+  });
+}
+
 function render() {
+  updateFilterCounts();
+
   // Apply the active category filter
   let visibleNotes = notes.filter((note) => {
     const matchesCategory =
