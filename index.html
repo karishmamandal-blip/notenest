@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NoteNest — jot it down, sort it out</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <h1 class="logo">NoteNest</h1>
+      <p class="tagline">Jot it down. Sort it out.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- New note form -->
+    <section class="new-note-panel" aria-labelledby="new-note-heading">
+      <h2 id="new-note-heading">Add a note</h2>
+      <form id="note-form">
+        <div class="field">
+          <label for="note-title">Title</label>
+          <input type="text" id="note-title" placeholder="Give your note a title" required>
+        </div>
+
+        <div class="field">
+          <label for="note-category">Category</label>
+          <select id="note-category">
+            <option value="personal">Personal</option>
+            <option value="work">Work</option>
+            <option value="idea">Idea</option>
+            <option value="study">Study</option>
+            <option value="todo">To-do</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="note-content">Note</label>
+          <textarea id="note-content" rows="3" placeholder="Write your note here..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary">Add Note</button>
+      </form>
+    </section>
+
+    <!-- Search + filter controls -->
+    <section class="controls" aria-label="Search and filter notes">
+      <input type="text" id="search-input" placeholder="Search notes..." aria-label="Search notes">
+
+      <div class="filter-tabs" id="filter-tabs" role="tablist" aria-label="Filter by category">
+        <button class="filter-btn active" data-category="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-btn" data-category="personal" role="tab" aria-selected="false">Personal</button>
+        <button class="filter-btn" data-category="work" role="tab" aria-selected="false">Work</button>
+        <button class="filter-btn" data-category="idea" role="tab" aria-selected="false">Idea</button>
+        <button class="filter-btn" data-category="study" role="tab" aria-selected="false">Study</button>
+        <button class="filter-btn" data-category="todo" role="tab" aria-selected="false">To-do</button>
+      </div>
+    </section>
+
+    <!-- Notes grid -->
+    <section aria-label="Your notes">
+      <div id="notes-grid" class="notes-grid"></div>
+      <p id="empty-state" class="empty-state" hidden>
+        No notes here yet. Add your first note above.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for learning open source · <a href="LICENSE">MIT License</a></p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

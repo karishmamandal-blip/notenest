@@ -1,0 +1,255 @@
+/* =========================================
+   NoteNest — base styles
+   Colors and spacing are kept as CSS variables
+   so they're easy to find and change.
+   ========================================= */
+
+:root {
+  /* paper + ink palette */
+  --paper: #f3efe3;
+  --paper-raised: #fbf9f3;
+  --ink: #2b2a28;
+  --ink-soft: #6b6558;
+  --accent: #3d6b5c;
+  --accent-dark: #2b4c41;
+  --border: #ded5bd;
+
+  /* one color per note category */
+  --cat-personal: #8b5fbf;
+  --cat-work: #3d6b5c;
+  --cat-idea: #c97b3d;
+  --cat-study: #3a6ea5;
+  --cat-todo: #b14a3c;
+
+  --radius: 6px;
+  --shadow: 0 2px 6px rgba(43, 42, 40, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h1, h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  margin: 0;
+}
+
+/* ---------- header ---------- */
+
+.site-header {
+  border-bottom: 3px solid var(--ink);
+  padding: 28px 0 20px;
+}
+
+.logo {
+  font-size: 2rem;
+  letter-spacing: 0.5px;
+}
+
+.tagline {
+  margin: 4px 0 0;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* ---------- new note panel ---------- */
+
+.new-note-panel {
+  background: var(--paper-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 28px 0;
+  box-shadow: var(--shadow);
+}
+
+.new-note-panel h2 {
+  font-size: 1.15rem;
+  margin-bottom: 14px;
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: var(--ink-soft);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 8px 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--accent-dark);
+}
+
+/* ---------- search + filter controls ---------- */
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#search-input {
+  flex: 1 1 220px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.filter-btn.active {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+/* ---------- notes grid ---------- */
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.note-card {
+  background: var(--paper-raised);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--accent); /* color set per-category in JS */
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.note-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-family: Georgia, serif;
+}
+
+.note-card .note-content {
+  font-size: 0.92rem;
+  color: var(--ink);
+  white-space: pre-wrap;
+  flex-grow: 1;
+}
+
+.note-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+
+.category-tag {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.delete-btn:hover {
+  color: var(--cat-todo);
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--ink-soft);
+  padding: 40px 0;
+}
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  text-align: center;
+  padding: 24px 0 40px;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.site-footer a {
+  color: var(--accent);
+}
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 480px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
