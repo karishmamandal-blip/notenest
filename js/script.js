@@ -128,10 +128,12 @@ function addNote(title, category, content) {
 }
 
 function deleteNote(id) {
-  // TODO (see ISSUES.md): this deletes immediately with no
-  // confirmation step. A "good first issue" for a newcomer is
-  // to add a confirmation prompt before removing a note.
+  if (!window.confirm("Are you sure you want to delete this note?")) {
+    return;
+  }
+
   notes = notes.filter((note) => note.id !== id);
+
   saveNotes();
   render();
 }
